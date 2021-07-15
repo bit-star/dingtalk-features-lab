@@ -1,0 +1,29 @@
+{
+  "dingtalkFeaturesLabApp": {
+    "privateData": {
+      "home": {
+        "title": "Private Data",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Private Data",
+        "createOrEditLabel": "Create or edit a Private Data",
+        "notFound": "No Private Data found"
+      },
+      "created": "A new Private Data is created with identifier {{ param }}",
+      "updated": "A Private Data is updated with identifier {{ param }}",
+      "deleted": "A Private Data is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Private Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Private Data"
+      },
+      "id": "ID",
+      "name": "Name",
+      "fee": "Fee",
+      "reason": "Reason",
+      "itemType": "Item Type",
+      "typesOfFee": "Types Of Fee",
+      "publicData": "Public Data"
+    }
+  }
+}

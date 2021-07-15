@@ -1,0 +1,9 @@
+{
+  "dingtalkFeaturesLabApp": {
+    "ItemType": {
+      "null": "",
+      "CostBudget": "CostBudget",
+      "ContractAmount": "ContractAmount"
+    }
+  }
+}

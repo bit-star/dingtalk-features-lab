@@ -43,7 +43,9 @@
     "devServerPort": 9060,
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["PublicData", "PrivateData"],
+    "lastLiquibaseTimestamp": 1626340180000
   },
   "git-provider": "GitHub",
   "git-company": "bit-star",

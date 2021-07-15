@@ -1,0 +1,34 @@
+
+
+
+
+entity PublicData {
+	name String,
+    fee Integer,
+    reason String,
+    itemType ItemType,
+    typesOfFee TypesOfFee
+}
+
+entity PrivateData {
+	name String,
+    fee Integer,
+    reason String,
+    itemType ItemType,
+    typesOfFee TypesOfFee
+}
+
+enum ItemType{
+	CostBudget,
+    ContractAmount
+}
+
+enum TypesOfFee{
+		IT , Purchase , DueDiligence
+}
+
+
+relationship  OneToMany {
+	PublicData to PrivateData
+}
+

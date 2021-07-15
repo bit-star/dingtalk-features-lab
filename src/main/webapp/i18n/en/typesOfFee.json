@@ -1,0 +1,10 @@
+{
+  "dingtalkFeaturesLabApp": {
+    "TypesOfFee": {
+      "null": "",
+      "IT": "IT",
+      "Purchase": "Purchase",
+      "DueDiligence": "DueDiligence"
+    }
+  }
+}

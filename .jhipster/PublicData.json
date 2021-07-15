@@ -1,0 +1,45 @@
+{
+  "name": "PublicData",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fee",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemType",
+      "fieldType": "ItemType",
+      "fieldValues": "CostBudget,ContractAmount"
+    },
+    {
+      "fieldName": "typesOfFee",
+      "fieldType": "TypesOfFee",
+      "fieldValues": "IT,Purchase,DueDiligence"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "privateData",
+      "otherEntityRelationshipName": "publicData",
+      "relationshipName": "privateData"
+    }
+  ],
+  "entityTableName": "public_data",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210715090939"
+}

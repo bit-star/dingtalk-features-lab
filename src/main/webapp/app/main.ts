@@ -28,6 +28,8 @@ import TrackerService from './admin/tracker/tracker.service';
 import UserOAuth2Service from '@/entities/user/user.oauth2.service';
 /* tslint:disable */
 
+import PublicDataService from '@/entities/public-data/public-data.service';
+import PrivateDataService from '@/entities/private-data/private-data.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -88,6 +90,8 @@ new Vue({
 
     userOAuth2Service: () => new UserOAuth2Service(),
     translationService: () => translationService,
+    publicDataService: () => new PublicDataService(),
+    privateDataService: () => new PrivateDataService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

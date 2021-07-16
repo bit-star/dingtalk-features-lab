@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kyanite.dingtalk.lab.domain.enumeration.ItemType;
 import com.kyanite.dingtalk.lab.domain.enumeration.TypesOfFee;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,8 +28,8 @@ public class PrivateData implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "fee")
-    private Integer fee;
+    @Column(name = "fee", precision = 21, scale = 2)
+    private BigDecimal fee;
 
     @Column(name = "reason")
     private String reason;
@@ -39,9 +42,17 @@ public class PrivateData implements Serializable {
     @Column(name = "types_of_fee")
     private TypesOfFee typesOfFee;
 
+    @Column(name = "agree")
+    private Boolean agree;
+
     @ManyToOne
     @JsonIgnoreProperties(value = { "privateData" }, allowSetters = true)
     private PublicData publicData;
+
+    @ManyToMany(mappedBy = "privateData")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "privateData" }, allowSetters = true)
+    private Set<DdUser> ddUsers = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -70,16 +81,16 @@ public class PrivateData implements Serializable {
         this.name = name;
     }
 
-    public Integer getFee() {
+    public BigDecimal getFee() {
         return this.fee;
     }
 
-    public PrivateData fee(Integer fee) {
+    public PrivateData fee(BigDecimal fee) {
         this.fee = fee;
         return this;
     }
 
-    public void setFee(Integer fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
@@ -122,6 +133,19 @@ public class PrivateData implements Serializable {
         this.typesOfFee = typesOfFee;
     }
 
+    public Boolean getAgree() {
+        return this.agree;
+    }
+
+    public PrivateData agree(Boolean agree) {
+        this.agree = agree;
+        return this;
+    }
+
+    public void setAgree(Boolean agree) {
+        this.agree = agree;
+    }
+
     public PublicData getPublicData() {
         return this.publicData;
     }
@@ -133,6 +157,37 @@ public class PrivateData implements Serializable {
 
     public void setPublicData(PublicData publicData) {
         this.publicData = publicData;
+    }
+
+    public Set<DdUser> getDdUsers() {
+        return this.ddUsers;
+    }
+
+    public PrivateData ddUsers(Set<DdUser> ddUsers) {
+        this.setDdUsers(ddUsers);
+        return this;
+    }
+
+    public PrivateData addDdUser(DdUser ddUser) {
+        this.ddUsers.add(ddUser);
+        ddUser.getPrivateData().add(this);
+        return this;
+    }
+
+    public PrivateData removeDdUser(DdUser ddUser) {
+        this.ddUsers.remove(ddUser);
+        ddUser.getPrivateData().remove(this);
+        return this;
+    }
+
+    public void setDdUsers(Set<DdUser> ddUsers) {
+        if (this.ddUsers != null) {
+            this.ddUsers.forEach(i -> i.removePrivateData(this));
+        }
+        if (ddUsers != null) {
+            ddUsers.forEach(i -> i.addPrivateData(this));
+        }
+        this.ddUsers = ddUsers;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -164,6 +219,7 @@ public class PrivateData implements Serializable {
             ", reason='" + getReason() + "'" +
             ", itemType='" + getItemType() + "'" +
             ", typesOfFee='" + getTypesOfFee() + "'" +
+            ", agree='" + getAgree() + "'" +
             "}";
     }
 }

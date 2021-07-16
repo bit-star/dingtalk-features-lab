@@ -85,6 +85,18 @@
               <option value="DueDiligence" v-bind:label="$t('dingtalkFeaturesLabApp.TypesOfFee.DueDiligence')">DueDiligence</option>
             </select>
           </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.publicData.agree')" for="public-data-agree">Agree</label>
+            <input
+              type="checkbox"
+              class="form-check"
+              name="agree"
+              id="public-data-agree"
+              data-cy="agree"
+              :class="{ valid: !$v.publicData.agree.$invalid, invalid: $v.publicData.agree.$invalid }"
+              v-model="$v.publicData.agree.$model"
+            />
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

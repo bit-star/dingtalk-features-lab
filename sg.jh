@@ -2,20 +2,49 @@
 
 
 
+entity DdUser {
+    unionid String,
+    remark String,
+    userid  String,
+    isLeaderInDepts  String,
+    isBoss  Boolean,
+    hiredDate BigDecimal,
+    isSenior  Boolean,
+    tel  String,
+    department String,
+    workPlace  String ,
+    orderInDepts  TextBlob,
+    mobile  String ,
+    errmsg  String ,
+    active  Boolean,
+    avatar  String ,
+    isAdmin Boolean,
+    isHide Boolean,
+    jobnumber  String,
+    name  String,
+    extattr TextBlob,
+    stateCode  String,
+    position  TextBlob,
+    roles  String
+}
+
+
 entity PublicData {
 	name String,
-    fee Integer,
+    fee BigDecimal,
     reason String,
     itemType ItemType,
-    typesOfFee TypesOfFee
+    typesOfFee TypesOfFee,
+    agree Boolean
 }
 
 entity PrivateData {
 	name String,
-    fee Integer,
+    fee BigDecimal,
     reason String,
     itemType ItemType,
-    typesOfFee TypesOfFee
+    typesOfFee TypesOfFee,
+    agree Boolean
 }
 
 enum ItemType{
@@ -31,4 +60,10 @@ enum TypesOfFee{
 relationship  OneToMany {
 	PublicData to PrivateData
 }
+
+relationship ManyToMany {
+	DdUser to PrivateData
+}
+
+
 

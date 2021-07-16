@@ -30,6 +30,7 @@ import UserOAuth2Service from '@/entities/user/user.oauth2.service';
 
 import PublicDataService from '@/entities/public-data/public-data.service';
 import PrivateDataService from '@/entities/private-data/private-data.service';
+import DdUserService from '@/entities/dd-user/dd-user.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 
 /* tslint:enable */
@@ -92,6 +93,7 @@ new Vue({
     translationService: () => translationService,
     publicDataService: () => new PublicDataService(),
     privateDataService: () => new PrivateDataService(),
+    ddUserService: () => new DdUserService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     accountService: () => accountService,
   },

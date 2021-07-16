@@ -86,6 +86,18 @@
             </select>
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.privateData.agree')" for="private-data-agree">Agree</label>
+            <input
+              type="checkbox"
+              class="form-check"
+              name="agree"
+              id="private-data-agree"
+              data-cy="agree"
+              :class="{ valid: !$v.privateData.agree.$invalid, invalid: $v.privateData.agree.$invalid }"
+              v-model="$v.privateData.agree.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.privateData.publicData')" for="private-data-publicData"
               >Public Data</label
             >

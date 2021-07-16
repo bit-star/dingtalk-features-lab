@@ -139,6 +139,9 @@ public class PublicDataResource {
                     if (publicData.getTypesOfFee() != null) {
                         existingPublicData.setTypesOfFee(publicData.getTypesOfFee());
                     }
+                    if (publicData.getAgree() != null) {
+                        existingPublicData.setAgree(publicData.getAgree());
+                    }
 
                     return existingPublicData;
                 }

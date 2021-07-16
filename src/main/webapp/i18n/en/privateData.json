@@ -23,6 +23,7 @@
       "reason": "Reason",
       "itemType": "Item Type",
       "typesOfFee": "Types Of Fee",
+      "agree": "Agree",
       "publicData": "Public Data"
     }
   }

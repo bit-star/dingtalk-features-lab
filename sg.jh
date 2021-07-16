@@ -4,18 +4,20 @@
 
 entity PublicData {
 	name String,
-    fee Integer,
+    fee BigDecimal,
     reason String,
     itemType ItemType,
-    typesOfFee TypesOfFee
+    typesOfFee TypesOfFee,
+    agree Boolean
 }
 
 entity PrivateData {
 	name String,
-    fee Integer,
+    fee BigDecimal,
     reason String,
     itemType ItemType,
-    typesOfFee TypesOfFee
+    typesOfFee TypesOfFee,
+    agree Boolean
 }
 
 enum ItemType{

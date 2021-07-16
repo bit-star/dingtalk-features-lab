@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kyanite.dingtalk.lab.domain.enumeration.ItemType;
 import com.kyanite.dingtalk.lab.domain.enumeration.TypesOfFee;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -25,8 +26,8 @@ public class PrivateData implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "fee")
-    private Integer fee;
+    @Column(name = "fee", precision = 21, scale = 2)
+    private BigDecimal fee;
 
     @Column(name = "reason")
     private String reason;
@@ -38,6 +39,9 @@ public class PrivateData implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "types_of_fee")
     private TypesOfFee typesOfFee;
+
+    @Column(name = "agree")
+    private Boolean agree;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "privateData" }, allowSetters = true)
@@ -70,16 +74,16 @@ public class PrivateData implements Serializable {
         this.name = name;
     }
 
-    public Integer getFee() {
+    public BigDecimal getFee() {
         return this.fee;
     }
 
-    public PrivateData fee(Integer fee) {
+    public PrivateData fee(BigDecimal fee) {
         this.fee = fee;
         return this;
     }
 
-    public void setFee(Integer fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
@@ -120,6 +124,19 @@ public class PrivateData implements Serializable {
 
     public void setTypesOfFee(TypesOfFee typesOfFee) {
         this.typesOfFee = typesOfFee;
+    }
+
+    public Boolean getAgree() {
+        return this.agree;
+    }
+
+    public PrivateData agree(Boolean agree) {
+        this.agree = agree;
+        return this;
+    }
+
+    public void setAgree(Boolean agree) {
+        this.agree = agree;
     }
 
     public PublicData getPublicData() {
@@ -164,6 +181,7 @@ public class PrivateData implements Serializable {
             ", reason='" + getReason() + "'" +
             ", itemType='" + getItemType() + "'" +
             ", typesOfFee='" + getTypesOfFee() + "'" +
+            ", agree='" + getAgree() + "'" +
             "}";
     }
 }

@@ -13,6 +13,7 @@ const validations: any = {
     reason: {},
     itemType: {},
     typesOfFee: {},
+    agree: {},
   },
 };
 

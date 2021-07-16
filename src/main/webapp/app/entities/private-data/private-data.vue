@@ -34,6 +34,7 @@
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.privateData.reason')">Reason</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.privateData.itemType')">Item Type</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.privateData.typesOfFee')">Types Of Fee</span></th>
+            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.privateData.agree')">Agree</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.privateData.publicData')">Public Data</span></th>
             <th scope="row"></th>
           </tr>
@@ -48,6 +49,7 @@
             <td>{{ privateData.reason }}</td>
             <td v-text="$t('dingtalkFeaturesLabApp.ItemType.' + privateData.itemType)">{{ privateData.itemType }}</td>
             <td v-text="$t('dingtalkFeaturesLabApp.TypesOfFee.' + privateData.typesOfFee)">{{ privateData.typesOfFee }}</td>
+            <td>{{ privateData.agree }}</td>
             <td>
               <div v-if="privateData.publicData">
                 <router-link :to="{ name: 'PublicDataView', params: { publicDataId: privateData.publicData.id } }">{{

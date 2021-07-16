@@ -9,6 +9,7 @@ export interface IPublicData {
   reason?: string | null;
   itemType?: ItemType | null;
   typesOfFee?: TypesOfFee | null;
+  agree?: boolean | null;
   privateData?: IPrivateData[] | null;
 }
 
@@ -20,6 +21,9 @@ export class PublicData implements IPublicData {
     public reason?: string | null,
     public itemType?: ItemType | null,
     public typesOfFee?: TypesOfFee | null,
+    public agree?: boolean | null,
     public privateData?: IPrivateData[] | null
-  ) {}
+  ) {
+    this.agree = this.agree ?? false;
+  }
 }

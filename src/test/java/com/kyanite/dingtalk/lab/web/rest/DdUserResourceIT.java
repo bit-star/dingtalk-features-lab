@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.kyanite.dingtalk.lab.IntegrationTest;
 import com.kyanite.dingtalk.lab.domain.DdUser;
 import com.kyanite.dingtalk.lab.repository.DdUserRepository;
+import com.kyanite.dingtalk.lab.service.DdUserService;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,6 +121,9 @@ class DdUserResourceIT {
 
     @Mock
     private DdUserRepository ddUserRepositoryMock;
+
+    @Mock
+    private DdUserService ddUserServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -297,20 +301,20 @@ class DdUserResourceIT {
 
     @SuppressWarnings({ "unchecked" })
     void getAllDdUsersWithEagerRelationshipsIsEnabled() throws Exception {
-        when(ddUserRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(ddUserServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restDdUserMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(ddUserRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(ddUserServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @SuppressWarnings({ "unchecked" })
     void getAllDdUsersWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(ddUserRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+        when(ddUserServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
 
         restDdUserMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
 
-        verify(ddUserRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+        verify(ddUserServiceMock, times(1)).findAllWithEagerRelationships(any());
     }
 
     @Test

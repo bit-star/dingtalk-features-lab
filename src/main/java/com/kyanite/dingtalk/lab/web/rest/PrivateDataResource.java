@@ -2,6 +2,7 @@ package com.kyanite.dingtalk.lab.web.rest;
 
 import com.kyanite.dingtalk.lab.domain.PrivateData;
 import com.kyanite.dingtalk.lab.repository.PrivateDataRepository;
+import com.kyanite.dingtalk.lab.service.PrivateDataService;
 import com.kyanite.dingtalk.lab.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +22,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class PrivateDataResource {
 
     private final Logger log = LoggerFactory.getLogger(PrivateDataResource.class);
@@ -32,9 +31,12 @@ public class PrivateDataResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final PrivateDataService privateDataService;
+
     private final PrivateDataRepository privateDataRepository;
 
-    public PrivateDataResource(PrivateDataRepository privateDataRepository) {
+    public PrivateDataResource(PrivateDataService privateDataService, PrivateDataRepository privateDataRepository) {
+        this.privateDataService = privateDataService;
         this.privateDataRepository = privateDataRepository;
     }
 
@@ -51,7 +53,7 @@ public class PrivateDataResource {
         if (privateData.getId() != null) {
             throw new BadRequestAlertException("A new privateData cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PrivateData result = privateDataRepository.save(privateData);
+        PrivateData result = privateDataService.save(privateData);
         return ResponseEntity
             .created(new URI("/api/private-data/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -85,7 +87,7 @@ public class PrivateDataResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        PrivateData result = privateDataRepository.save(privateData);
+        PrivateData result = privateDataService.save(privateData);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, privateData.getId().toString()))
@@ -120,33 +122,7 @@ public class PrivateDataResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<PrivateData> result = privateDataRepository
-            .findById(privateData.getId())
-            .map(
-                existingPrivateData -> {
-                    if (privateData.getName() != null) {
-                        existingPrivateData.setName(privateData.getName());
-                    }
-                    if (privateData.getFee() != null) {
-                        existingPrivateData.setFee(privateData.getFee());
-                    }
-                    if (privateData.getReason() != null) {
-                        existingPrivateData.setReason(privateData.getReason());
-                    }
-                    if (privateData.getItemType() != null) {
-                        existingPrivateData.setItemType(privateData.getItemType());
-                    }
-                    if (privateData.getTypesOfFee() != null) {
-                        existingPrivateData.setTypesOfFee(privateData.getTypesOfFee());
-                    }
-                    if (privateData.getAgree() != null) {
-                        existingPrivateData.setAgree(privateData.getAgree());
-                    }
-
-                    return existingPrivateData;
-                }
-            )
-            .map(privateDataRepository::save);
+        Optional<PrivateData> result = privateDataService.partialUpdate(privateData);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -162,7 +138,7 @@ public class PrivateDataResource {
     @GetMapping("/private-data")
     public List<PrivateData> getAllPrivateData() {
         log.debug("REST request to get all PrivateData");
-        return privateDataRepository.findAll();
+        return privateDataService.findAll();
     }
 
     /**
@@ -174,7 +150,7 @@ public class PrivateDataResource {
     @GetMapping("/private-data/{id}")
     public ResponseEntity<PrivateData> getPrivateData(@PathVariable Long id) {
         log.debug("REST request to get PrivateData : {}", id);
-        Optional<PrivateData> privateData = privateDataRepository.findById(id);
+        Optional<PrivateData> privateData = privateDataService.findOne(id);
         return ResponseUtil.wrapOrNotFound(privateData);
     }
 
@@ -187,7 +163,7 @@ public class PrivateDataResource {
     @DeleteMapping("/private-data/{id}")
     public ResponseEntity<Void> deletePrivateData(@PathVariable Long id) {
         log.debug("REST request to delete PrivateData : {}", id);
-        privateDataRepository.deleteById(id);
+        privateDataService.delete(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))

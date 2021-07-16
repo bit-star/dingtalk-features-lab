@@ -49,6 +49,18 @@
             <font-awesome-icon icon="asterisk" />
             <span v-text="$t('global.menu.entities.ddUser')">Dd User</span>
           </b-dropdown-item>
+          <b-dropdown-item to="/public-data">
+            <font-awesome-icon icon="asterisk" />
+            <span v-text="$t('global.menu.entities.publicData')">Public Data</span>
+          </b-dropdown-item>
+          <b-dropdown-item to="/private-data">
+            <font-awesome-icon icon="asterisk" />
+            <span v-text="$t('global.menu.entities.privateData')">Private Data</span>
+          </b-dropdown-item>
+          <b-dropdown-item to="/dd-user">
+            <font-awesome-icon icon="asterisk" />
+            <span v-text="$t('global.menu.entities.ddUser')">Dd User</span>
+          </b-dropdown-item>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
         </b-nav-item-dropdown>
         <b-nav-item-dropdown

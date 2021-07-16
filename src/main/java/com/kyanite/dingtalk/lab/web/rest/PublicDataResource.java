@@ -2,6 +2,7 @@ package com.kyanite.dingtalk.lab.web.rest;
 
 import com.kyanite.dingtalk.lab.domain.PublicData;
 import com.kyanite.dingtalk.lab.repository.PublicDataRepository;
+import com.kyanite.dingtalk.lab.service.PublicDataService;
 import com.kyanite.dingtalk.lab.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +22,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class PublicDataResource {
 
     private final Logger log = LoggerFactory.getLogger(PublicDataResource.class);
@@ -32,9 +31,12 @@ public class PublicDataResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final PublicDataService publicDataService;
+
     private final PublicDataRepository publicDataRepository;
 
-    public PublicDataResource(PublicDataRepository publicDataRepository) {
+    public PublicDataResource(PublicDataService publicDataService, PublicDataRepository publicDataRepository) {
+        this.publicDataService = publicDataService;
         this.publicDataRepository = publicDataRepository;
     }
 
@@ -51,7 +53,7 @@ public class PublicDataResource {
         if (publicData.getId() != null) {
             throw new BadRequestAlertException("A new publicData cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        PublicData result = publicDataRepository.save(publicData);
+        PublicData result = publicDataService.save(publicData);
         return ResponseEntity
             .created(new URI("/api/public-data/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -85,7 +87,7 @@ public class PublicDataResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        PublicData result = publicDataRepository.save(publicData);
+        PublicData result = publicDataService.save(publicData);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, publicData.getId().toString()))
@@ -120,33 +122,7 @@ public class PublicDataResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<PublicData> result = publicDataRepository
-            .findById(publicData.getId())
-            .map(
-                existingPublicData -> {
-                    if (publicData.getName() != null) {
-                        existingPublicData.setName(publicData.getName());
-                    }
-                    if (publicData.getFee() != null) {
-                        existingPublicData.setFee(publicData.getFee());
-                    }
-                    if (publicData.getReason() != null) {
-                        existingPublicData.setReason(publicData.getReason());
-                    }
-                    if (publicData.getItemType() != null) {
-                        existingPublicData.setItemType(publicData.getItemType());
-                    }
-                    if (publicData.getTypesOfFee() != null) {
-                        existingPublicData.setTypesOfFee(publicData.getTypesOfFee());
-                    }
-                    if (publicData.getAgree() != null) {
-                        existingPublicData.setAgree(publicData.getAgree());
-                    }
-
-                    return existingPublicData;
-                }
-            )
-            .map(publicDataRepository::save);
+        Optional<PublicData> result = publicDataService.partialUpdate(publicData);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -162,7 +138,7 @@ public class PublicDataResource {
     @GetMapping("/public-data")
     public List<PublicData> getAllPublicData() {
         log.debug("REST request to get all PublicData");
-        return publicDataRepository.findAll();
+        return publicDataService.findAll();
     }
 
     /**
@@ -174,7 +150,7 @@ public class PublicDataResource {
     @GetMapping("/public-data/{id}")
     public ResponseEntity<PublicData> getPublicData(@PathVariable Long id) {
         log.debug("REST request to get PublicData : {}", id);
-        Optional<PublicData> publicData = publicDataRepository.findById(id);
+        Optional<PublicData> publicData = publicDataService.findOne(id);
         return ResponseUtil.wrapOrNotFound(publicData);
     }
 
@@ -187,7 +163,7 @@ public class PublicDataResource {
     @DeleteMapping("/public-data/{id}")
     public ResponseEntity<Void> deletePublicData(@PathVariable Long id) {
         log.debug("REST request to delete PublicData : {}", id);
-        publicDataRepository.deleteById(id);
+        publicDataService.delete(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))

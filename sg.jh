@@ -66,4 +66,7 @@ relationship ManyToMany {
 }
 
 
+service all with serviceClass
+
+
 

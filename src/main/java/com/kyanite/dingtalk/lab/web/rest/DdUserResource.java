@@ -2,6 +2,7 @@ package com.kyanite.dingtalk.lab.web.rest;
 
 import com.kyanite.dingtalk.lab.domain.DdUser;
 import com.kyanite.dingtalk.lab.repository.DdUserRepository;
+import com.kyanite.dingtalk.lab.service.DdUserService;
 import com.kyanite.dingtalk.lab.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
@@ -22,7 +22,6 @@ import tech.jhipster.web.util.ResponseUtil;
  */
 @RestController
 @RequestMapping("/api")
-@Transactional
 public class DdUserResource {
 
     private final Logger log = LoggerFactory.getLogger(DdUserResource.class);
@@ -32,9 +31,12 @@ public class DdUserResource {
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
+    private final DdUserService ddUserService;
+
     private final DdUserRepository ddUserRepository;
 
-    public DdUserResource(DdUserRepository ddUserRepository) {
+    public DdUserResource(DdUserService ddUserService, DdUserRepository ddUserRepository) {
+        this.ddUserService = ddUserService;
         this.ddUserRepository = ddUserRepository;
     }
 
@@ -51,7 +53,7 @@ public class DdUserResource {
         if (ddUser.getId() != null) {
             throw new BadRequestAlertException("A new ddUser cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        DdUser result = ddUserRepository.save(ddUser);
+        DdUser result = ddUserService.save(ddUser);
         return ResponseEntity
             .created(new URI("/api/dd-users/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -83,7 +85,7 @@ public class DdUserResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        DdUser result = ddUserRepository.save(ddUser);
+        DdUser result = ddUserService.save(ddUser);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, ddUser.getId().toString()))
@@ -118,84 +120,7 @@ public class DdUserResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<DdUser> result = ddUserRepository
-            .findById(ddUser.getId())
-            .map(
-                existingDdUser -> {
-                    if (ddUser.getUnionid() != null) {
-                        existingDdUser.setUnionid(ddUser.getUnionid());
-                    }
-                    if (ddUser.getRemark() != null) {
-                        existingDdUser.setRemark(ddUser.getRemark());
-                    }
-                    if (ddUser.getUserid() != null) {
-                        existingDdUser.setUserid(ddUser.getUserid());
-                    }
-                    if (ddUser.getIsLeaderInDepts() != null) {
-                        existingDdUser.setIsLeaderInDepts(ddUser.getIsLeaderInDepts());
-                    }
-                    if (ddUser.getIsBoss() != null) {
-                        existingDdUser.setIsBoss(ddUser.getIsBoss());
-                    }
-                    if (ddUser.getHiredDate() != null) {
-                        existingDdUser.setHiredDate(ddUser.getHiredDate());
-                    }
-                    if (ddUser.getIsSenior() != null) {
-                        existingDdUser.setIsSenior(ddUser.getIsSenior());
-                    }
-                    if (ddUser.getTel() != null) {
-                        existingDdUser.setTel(ddUser.getTel());
-                    }
-                    if (ddUser.getDepartment() != null) {
-                        existingDdUser.setDepartment(ddUser.getDepartment());
-                    }
-                    if (ddUser.getWorkPlace() != null) {
-                        existingDdUser.setWorkPlace(ddUser.getWorkPlace());
-                    }
-                    if (ddUser.getOrderInDepts() != null) {
-                        existingDdUser.setOrderInDepts(ddUser.getOrderInDepts());
-                    }
-                    if (ddUser.getMobile() != null) {
-                        existingDdUser.setMobile(ddUser.getMobile());
-                    }
-                    if (ddUser.getErrmsg() != null) {
-                        existingDdUser.setErrmsg(ddUser.getErrmsg());
-                    }
-                    if (ddUser.getActive() != null) {
-                        existingDdUser.setActive(ddUser.getActive());
-                    }
-                    if (ddUser.getAvatar() != null) {
-                        existingDdUser.setAvatar(ddUser.getAvatar());
-                    }
-                    if (ddUser.getIsAdmin() != null) {
-                        existingDdUser.setIsAdmin(ddUser.getIsAdmin());
-                    }
-                    if (ddUser.getIsHide() != null) {
-                        existingDdUser.setIsHide(ddUser.getIsHide());
-                    }
-                    if (ddUser.getJobnumber() != null) {
-                        existingDdUser.setJobnumber(ddUser.getJobnumber());
-                    }
-                    if (ddUser.getName() != null) {
-                        existingDdUser.setName(ddUser.getName());
-                    }
-                    if (ddUser.getExtattr() != null) {
-                        existingDdUser.setExtattr(ddUser.getExtattr());
-                    }
-                    if (ddUser.getStateCode() != null) {
-                        existingDdUser.setStateCode(ddUser.getStateCode());
-                    }
-                    if (ddUser.getPosition() != null) {
-                        existingDdUser.setPosition(ddUser.getPosition());
-                    }
-                    if (ddUser.getRoles() != null) {
-                        existingDdUser.setRoles(ddUser.getRoles());
-                    }
-
-                    return existingDdUser;
-                }
-            )
-            .map(ddUserRepository::save);
+        Optional<DdUser> result = ddUserService.partialUpdate(ddUser);
 
         return ResponseUtil.wrapOrNotFound(
             result,
@@ -212,7 +137,7 @@ public class DdUserResource {
     @GetMapping("/dd-users")
     public List<DdUser> getAllDdUsers(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all DdUsers");
-        return ddUserRepository.findAllWithEagerRelationships();
+        return ddUserService.findAll();
     }
 
     /**
@@ -224,7 +149,7 @@ public class DdUserResource {
     @GetMapping("/dd-users/{id}")
     public ResponseEntity<DdUser> getDdUser(@PathVariable Long id) {
         log.debug("REST request to get DdUser : {}", id);
-        Optional<DdUser> ddUser = ddUserRepository.findOneWithEagerRelationships(id);
+        Optional<DdUser> ddUser = ddUserService.findOne(id);
         return ResponseUtil.wrapOrNotFound(ddUser);
     }
 
@@ -237,7 +162,7 @@ public class DdUserResource {
     @DeleteMapping("/dd-users/{id}")
     public ResponseEntity<Void> deleteDdUser(@PathVariable Long id) {
         log.debug("REST request to delete DdUser : {}", id);
-        ddUserRepository.deleteById(id);
+        ddUserService.delete(id);
         return ResponseEntity
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))

@@ -3,6 +3,9 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 import PublicDataService from '@/entities/public-data/public-data.service';
 import { IPublicData } from '@/shared/model/public-data.model';
 
+import DdUserService from '@/entities/dd-user/dd-user.service';
+import { IDdUser } from '@/shared/model/dd-user.model';
+
 import { IPrivateData, PrivateData } from '@/shared/model/private-data.model';
 import PrivateDataService from './private-data.service';
 
@@ -13,6 +16,7 @@ const validations: any = {
     reason: {},
     itemType: {},
     typesOfFee: {},
+    agree: {},
   },
 };
 
@@ -26,6 +30,10 @@ export default class PrivateDataUpdate extends Vue {
   @Inject('publicDataService') private publicDataService: () => PublicDataService;
 
   public publicData: IPublicData[] = [];
+
+  @Inject('ddUserService') private ddUserService: () => DdUserService;
+
+  public ddUsers: IDdUser[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -100,6 +108,11 @@ export default class PrivateDataUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.publicData = res.data;
+      });
+    this.ddUserService()
+      .retrieve()
+      .then(res => {
+        this.ddUsers = res.data;
       });
   }
 }

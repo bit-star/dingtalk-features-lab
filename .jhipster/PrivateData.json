@@ -7,7 +7,7 @@
     },
     {
       "fieldName": "fee",
-      "fieldType": "Integer"
+      "fieldType": "BigDecimal"
     },
     {
       "fieldName": "reason",
@@ -22,6 +22,10 @@
       "fieldName": "typesOfFee",
       "fieldType": "TypesOfFee",
       "fieldValues": "IT,Purchase,DueDiligence"
+    },
+    {
+      "fieldName": "agree",
+      "fieldType": "Boolean"
     }
   ],
   "relationships": [
@@ -30,6 +34,13 @@
       "otherEntityName": "publicData",
       "otherEntityRelationshipName": "privateData",
       "relationshipName": "publicData"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "ddUser",
+      "otherEntityRelationshipName": "privateData",
+      "relationshipName": "ddUser",
+      "ownerSide": false
     }
   ],
   "entityTableName": "private_data",

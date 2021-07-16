@@ -23,7 +23,9 @@
       "reason": "Reason",
       "itemType": "Item Type",
       "typesOfFee": "Types Of Fee",
-      "publicData": "Public Data"
+      "agree": "Agree",
+      "publicData": "Public Data",
+      "ddUser": "Dd User"
     }
   }
 }

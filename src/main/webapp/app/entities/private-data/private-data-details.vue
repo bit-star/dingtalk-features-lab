@@ -37,6 +37,12 @@
             <span v-text="$t('dingtalkFeaturesLabApp.TypesOfFee.' + privateData.typesOfFee)">{{ privateData.typesOfFee }}</span>
           </dd>
           <dt>
+            <span v-text="$t('dingtalkFeaturesLabApp.privateData.agree')">Agree</span>
+          </dt>
+          <dd>
+            <span>{{ privateData.agree }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('dingtalkFeaturesLabApp.privateData.publicData')">Public Data</span>
           </dt>
           <dd>

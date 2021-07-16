@@ -9,6 +9,7 @@
         "main": "数据",
         "publicData": "Public Data",
         "privateData": "Private Data",
+        "ddUser": "Dd User",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

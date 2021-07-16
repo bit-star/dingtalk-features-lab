@@ -31,7 +31,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new PublicDataService();
-      elemDefault = new PublicData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT);
+      elemDefault = new PublicData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT, false);
     });
 
     describe('Service methods', () => {
@@ -88,6 +88,7 @@ describe('Service Tests', () => {
             reason: 'BBBBBB',
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
+            agree: true,
           },
           elemDefault
         );
@@ -115,6 +116,7 @@ describe('Service Tests', () => {
         const patchObject = Object.assign(
           {
             fee: 1,
+            agree: true,
           },
           new PublicData()
         );
@@ -147,6 +149,7 @@ describe('Service Tests', () => {
             reason: 'BBBBBB',
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
+            agree: true,
           },
           elemDefault
         );

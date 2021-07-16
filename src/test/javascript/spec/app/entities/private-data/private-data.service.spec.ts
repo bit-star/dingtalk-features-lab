@@ -31,7 +31,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new PrivateDataService();
-      elemDefault = new PrivateData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT);
+      elemDefault = new PrivateData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT, false);
     });
 
     describe('Service methods', () => {
@@ -88,6 +88,7 @@ describe('Service Tests', () => {
             reason: 'BBBBBB',
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
+            agree: true,
           },
           elemDefault
         );
@@ -148,6 +149,7 @@ describe('Service Tests', () => {
             reason: 'BBBBBB',
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
+            agree: true,
           },
           elemDefault
         );

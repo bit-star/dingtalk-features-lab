@@ -36,6 +36,12 @@
           <dd>
             <span v-text="$t('dingtalkFeaturesLabApp.TypesOfFee.' + publicData.typesOfFee)">{{ publicData.typesOfFee }}</span>
           </dd>
+          <dt>
+            <span v-text="$t('dingtalkFeaturesLabApp.publicData.agree')">Agree</span>
+          </dt>
+          <dd>
+            <span>{{ publicData.agree }}</span>
+          </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span v-text="$t('entity.action.back')"> Back</span>

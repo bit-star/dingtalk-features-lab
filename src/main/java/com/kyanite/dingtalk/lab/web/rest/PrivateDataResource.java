@@ -139,6 +139,9 @@ public class PrivateDataResource {
                     if (privateData.getTypesOfFee() != null) {
                         existingPrivateData.setTypesOfFee(privateData.getTypesOfFee());
                     }
+                    if (privateData.getAgree() != null) {
+                        existingPrivateData.setAgree(privateData.getAgree());
+                    }
 
                     return existingPrivateData;
                 }

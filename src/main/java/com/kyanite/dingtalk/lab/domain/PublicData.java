@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kyanite.dingtalk.lab.domain.enumeration.ItemType;
 import com.kyanite.dingtalk.lab.domain.enumeration.TypesOfFee;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -27,8 +28,8 @@ public class PublicData implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "fee")
-    private Integer fee;
+    @Column(name = "fee", precision = 21, scale = 2)
+    private BigDecimal fee;
 
     @Column(name = "reason")
     private String reason;
@@ -40,6 +41,9 @@ public class PublicData implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "types_of_fee")
     private TypesOfFee typesOfFee;
+
+    @Column(name = "agree")
+    private Boolean agree;
 
     @OneToMany(mappedBy = "publicData")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -73,16 +77,16 @@ public class PublicData implements Serializable {
         this.name = name;
     }
 
-    public Integer getFee() {
+    public BigDecimal getFee() {
         return this.fee;
     }
 
-    public PublicData fee(Integer fee) {
+    public PublicData fee(BigDecimal fee) {
         this.fee = fee;
         return this;
     }
 
-    public void setFee(Integer fee) {
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
 
@@ -123,6 +127,19 @@ public class PublicData implements Serializable {
 
     public void setTypesOfFee(TypesOfFee typesOfFee) {
         this.typesOfFee = typesOfFee;
+    }
+
+    public Boolean getAgree() {
+        return this.agree;
+    }
+
+    public PublicData agree(Boolean agree) {
+        this.agree = agree;
+        return this;
+    }
+
+    public void setAgree(Boolean agree) {
+        this.agree = agree;
     }
 
     public Set<PrivateData> getPrivateData() {
@@ -185,6 +202,7 @@ public class PublicData implements Serializable {
             ", reason='" + getReason() + "'" +
             ", itemType='" + getItemType() + "'" +
             ", typesOfFee='" + getTypesOfFee() + "'" +
+            ", agree='" + getAgree() + "'" +
             "}";
     }
 }

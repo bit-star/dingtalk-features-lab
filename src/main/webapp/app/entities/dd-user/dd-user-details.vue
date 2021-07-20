@@ -145,13 +145,14 @@
             <span>{{ ddUser.roles }}</span>
           </dd>
           <dt>
-            <span v-text="$t('dingtalkFeaturesLabApp.ddUser.privateData')">Private Data</span>
+            <span v-text="$t('dingtalkFeaturesLabApp.ddUser.conversation')">Conversation</span>
           </dt>
           <dd>
-            <span v-for="(privateData, i) in ddUser.privateData" :key="privateData.id"
-              >{{ i > 0 ? ', ' : '' }}
-              <router-link :to="{ name: 'PrivateDataView', params: { privateDataId: privateData.id } }">{{ privateData.id }}</router-link>
-            </span>
+            <div v-if="ddUser.conversation">
+              <router-link :to="{ name: 'ConversationView', params: { conversationId: ddUser.conversation.id } }">{{
+                ddUser.conversation.id
+              }}</router-link>
+            </div>
           </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

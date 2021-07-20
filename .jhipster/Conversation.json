@@ -1,0 +1,37 @@
+{
+  "name": "Conversation",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "publicData",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "publicData"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "ddUser",
+      "otherEntityRelationshipName": "conversation",
+      "relationshipName": "ddUser"
+    }
+  ],
+  "entityTableName": "conversation",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210720031150"
+}

@@ -35,6 +35,7 @@
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.itemType')">Item Type</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.typesOfFee')">Types Of Fee</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.agree')">Agree</span></th>
+            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.conversation')">Conversation</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -49,6 +50,13 @@
             <td v-text="$t('dingtalkFeaturesLabApp.ItemType.' + publicData.itemType)">{{ publicData.itemType }}</td>
             <td v-text="$t('dingtalkFeaturesLabApp.TypesOfFee.' + publicData.typesOfFee)">{{ publicData.typesOfFee }}</td>
             <td>{{ publicData.agree }}</td>
+            <td>
+              <div v-if="publicData.conversation">
+                <router-link :to="{ name: 'ConversationView', params: { conversationId: publicData.conversation.id } }">{{
+                  publicData.conversation.id
+                }}</router-link>
+              </div>
+            </td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'PublicDataView', params: { publicDataId: publicData.id } }" custom v-slot="{ navigate }">

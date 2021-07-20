@@ -54,6 +54,9 @@ public class CacheConfiguration {
             createCache(cm, com.kyanite.dingtalk.lab.domain.PrivateData.class.getName() + ".ddUsers");
             createCache(cm, com.kyanite.dingtalk.lab.domain.DdUser.class.getName());
             createCache(cm, com.kyanite.dingtalk.lab.domain.DdUser.class.getName() + ".privateData");
+            createCache(cm, com.kyanite.dingtalk.lab.domain.Conversation.class.getName());
+            createCache(cm, com.kyanite.dingtalk.lab.domain.Conversation.class.getName() + ".publicData");
+            createCache(cm, com.kyanite.dingtalk.lab.domain.Conversation.class.getName() + ".ddUsers");
             // jhipster-needle-ehcache-add-entry
         };
     }

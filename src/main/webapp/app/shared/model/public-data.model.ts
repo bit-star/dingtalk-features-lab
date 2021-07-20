@@ -1,4 +1,5 @@
 import { IPrivateData } from '@/shared/model/private-data.model';
+import { IConversation } from '@/shared/model/conversation.model';
 
 import { ItemType } from '@/shared/model/enumerations/item-type.model';
 import { TypesOfFee } from '@/shared/model/enumerations/types-of-fee.model';
@@ -11,6 +12,7 @@ export interface IPublicData {
   typesOfFee?: TypesOfFee | null;
   agree?: boolean | null;
   privateData?: IPrivateData[] | null;
+  conversation?: IConversation | null;
 }
 
 export class PublicData implements IPublicData {
@@ -22,7 +24,8 @@ export class PublicData implements IPublicData {
     public itemType?: ItemType | null,
     public typesOfFee?: TypesOfFee | null,
     public agree?: boolean | null,
-    public privateData?: IPrivateData[] | null
+    public privateData?: IPrivateData[] | null,
+    public conversation?: IConversation | null
   ) {
     this.agree = this.agree ?? false;
   }

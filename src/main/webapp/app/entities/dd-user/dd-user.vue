@@ -52,7 +52,7 @@
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.ddUser.stateCode')">State Code</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.ddUser.position')">Position</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.ddUser.roles')">Roles</span></th>
-            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.ddUser.privateData')">Private Data</span></th>
+            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.ddUser.conversation')">Conversation</span></th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -85,12 +85,11 @@
             <td>{{ ddUser.position }}</td>
             <td>{{ ddUser.roles }}</td>
             <td>
-              <span v-for="(privateData, i) in ddUser.privateData" :key="privateData.id"
-                >{{ i > 0 ? ', ' : '' }}
-                <router-link class="form-control-static" :to="{ name: 'PrivateDataView', params: { privateDataId: privateData.id } }">{{
-                  privateData.id
+              <div v-if="ddUser.conversation">
+                <router-link :to="{ name: 'ConversationView', params: { conversationId: ddUser.conversation.id } }">{{
+                  ddUser.conversation.id
                 }}</router-link>
-              </span>
+              </div>
             </td>
             <td class="text-right">
               <div class="btn-group">

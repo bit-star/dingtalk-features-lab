@@ -131,11 +131,10 @@ public class DdUserResource {
     /**
      * {@code GET  /dd-users} : get all the ddUsers.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ddUsers in body.
      */
     @GetMapping("/dd-users")
-    public List<DdUser> getAllDdUsers(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<DdUser> getAllDdUsers() {
         log.debug("REST request to get all DdUsers");
         return ddUserService.findAll();
     }

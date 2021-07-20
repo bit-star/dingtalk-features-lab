@@ -1,4 +1,5 @@
 import { IPrivateData } from '@/shared/model/private-data.model';
+import { IConversation } from '@/shared/model/conversation.model';
 
 export interface IDdUser {
   id?: number;
@@ -26,6 +27,7 @@ export interface IDdUser {
   position?: string | null;
   roles?: string | null;
   privateData?: IPrivateData[] | null;
+  conversation?: IConversation | null;
 }
 
 export class DdUser implements IDdUser {
@@ -54,7 +56,8 @@ export class DdUser implements IDdUser {
     public stateCode?: string | null,
     public position?: string | null,
     public roles?: string | null,
-    public privateData?: IPrivateData[] | null
+    public privateData?: IPrivateData[] | null,
+    public conversation?: IConversation | null
   ) {
     this.isBoss = this.isBoss ?? false;
     this.isSenior = this.isSenior ?? false;

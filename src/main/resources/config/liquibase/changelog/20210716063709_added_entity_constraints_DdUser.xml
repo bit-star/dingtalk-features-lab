@@ -8,16 +8,10 @@
     -->
     <changeSet id="20210716063709-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="dd_user_id"
-                                 baseTableName="rel_dd_user__private_data"
-                                 constraintName="fk_rel_dd_user__private_data__dd_user_id"
+        <addForeignKeyConstraint baseColumnNames="conversation_id"
+                                 baseTableName="dd_user"
+                                 constraintName="fk_dd_user__conversation_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="dd_user"/>
-
-        <addForeignKeyConstraint baseColumnNames="private_data_id"
-                                 baseTableName="rel_dd_user__private_data"
-                                 constraintName="fk_rel_dd_user__private_data__private_data_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="private_data"/>
+                                 referencedTableName="conversation"/>
     </changeSet>
 </databaseChangeLog>

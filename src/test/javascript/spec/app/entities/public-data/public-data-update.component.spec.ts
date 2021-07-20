@@ -10,6 +10,8 @@ import PublicDataService from '@/entities/public-data/public-data.service';
 
 import PrivateDataService from '@/entities/private-data/private-data.service';
 
+import ConversationService from '@/entities/conversation/conversation.service';
+
 const localVue = createLocalVue();
 
 config.initVueApp(localVue);
@@ -41,6 +43,8 @@ describe('Component Tests', () => {
           publicDataService: () => publicDataServiceStub,
 
           privateDataService: () => new PrivateDataService(),
+
+          conversationService: () => new ConversationService(),
         },
       });
       comp = wrapper.vm;

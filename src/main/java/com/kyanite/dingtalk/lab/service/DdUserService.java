@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -134,16 +132,7 @@ public class DdUserService {
     @Transactional(readOnly = true)
     public List<DdUser> findAll() {
         log.debug("Request to get all DdUsers");
-        return ddUserRepository.findAllWithEagerRelationships();
-    }
-
-    /**
-     * Get all the ddUsers with eager load of many-to-many relationships.
-     *
-     * @return the list of entities.
-     */
-    public Page<DdUser> findAllWithEagerRelationships(Pageable pageable) {
-        return ddUserRepository.findAllWithEagerRelationships(pageable);
+        return ddUserRepository.findAll();
     }
 
     /**
@@ -155,7 +144,7 @@ public class DdUserService {
     @Transactional(readOnly = true)
     public Optional<DdUser> findOne(Long id) {
         log.debug("Request to get DdUser : {}", id);
-        return ddUserRepository.findOneWithEagerRelationships(id);
+        return ddUserRepository.findById(id);
     }
 
     /**

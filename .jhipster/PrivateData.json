@@ -36,11 +36,10 @@
       "relationshipName": "publicData"
     },
     {
-      "relationshipType": "many-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "ddUser",
       "otherEntityRelationshipName": "privateData",
-      "relationshipName": "ddUser",
-      "ownerSide": false
+      "relationshipName": "ddUser"
     }
   ],
   "entityTableName": "private_data",

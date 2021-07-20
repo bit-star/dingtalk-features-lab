@@ -99,11 +99,16 @@
   ],
   "relationships": [
     {
-      "relationshipType": "many-to-many",
+      "relationshipType": "one-to-many",
       "otherEntityName": "privateData",
       "otherEntityRelationshipName": "ddUser",
-      "relationshipName": "privateData",
-      "ownerSide": true
+      "relationshipName": "privateData"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "conversation",
+      "otherEntityRelationshipName": "ddUser",
+      "relationshipName": "conversation"
     }
   ],
   "entityTableName": "dd_user",

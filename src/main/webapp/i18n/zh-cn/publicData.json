@@ -24,7 +24,8 @@
       "itemType": "Item Type",
       "typesOfFee": "Types Of Fee",
       "agree": "Agree",
-      "privateData": "Private Data"
+      "privateData": "Private Data",
+      "conversation": "Conversation"
     }
   }
 }

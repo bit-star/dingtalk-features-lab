@@ -41,7 +41,8 @@
       "stateCode": "State Code",
       "position": "Position",
       "roles": "Roles",
-      "privateData": "Private Data"
+      "privateData": "Private Data",
+      "conversation": "Conversation"
     }
   }
 }

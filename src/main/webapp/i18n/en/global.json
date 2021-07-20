@@ -10,6 +10,7 @@
         "publicData": "Public Data",
         "privateData": "Private Data",
         "ddUser": "Dd User",
+        "conversation": "Conversation",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

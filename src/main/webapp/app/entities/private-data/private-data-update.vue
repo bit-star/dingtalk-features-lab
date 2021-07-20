@@ -120,6 +120,21 @@
               </option>
             </select>
           </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.privateData.ddUser')" for="private-data-ddUser"
+              >Dd User</label
+            >
+            <select class="form-control" id="private-data-ddUser" data-cy="ddUser" name="ddUser" v-model="privateData.ddUser">
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="privateData.ddUser && ddUserOption.id === privateData.ddUser.id ? privateData.ddUser : ddUserOption"
+                v-for="ddUserOption in ddUsers"
+                :key="ddUserOption.id"
+              >
+                {{ ddUserOption.id }}
+              </option>
+            </select>
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

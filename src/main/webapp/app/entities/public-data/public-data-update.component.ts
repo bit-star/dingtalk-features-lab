@@ -3,6 +3,9 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 import PrivateDataService from '@/entities/private-data/private-data.service';
 import { IPrivateData } from '@/shared/model/private-data.model';
 
+import ConversationService from '@/entities/conversation/conversation.service';
+import { IConversation } from '@/shared/model/conversation.model';
+
 import { IPublicData, PublicData } from '@/shared/model/public-data.model';
 import PublicDataService from './public-data.service';
 
@@ -27,6 +30,10 @@ export default class PublicDataUpdate extends Vue {
   @Inject('privateDataService') private privateDataService: () => PrivateDataService;
 
   public privateData: IPrivateData[] = [];
+
+  @Inject('conversationService') private conversationService: () => ConversationService;
+
+  public conversations: IConversation[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -101,6 +108,11 @@ export default class PublicDataUpdate extends Vue {
       .retrieve()
       .then(res => {
         this.privateData = res.data;
+      });
+    this.conversationService()
+      .retrieve()
+      .then(res => {
+        this.conversations = res.data;
       });
   }
 }

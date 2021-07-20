@@ -34,6 +34,12 @@
       "otherEntityName": "privateData",
       "otherEntityRelationshipName": "publicData",
       "relationshipName": "privateData"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "conversation",
+      "otherEntityRelationshipName": "publicData",
+      "relationshipName": "conversation"
     }
   ],
   "entityTableName": "public_data",

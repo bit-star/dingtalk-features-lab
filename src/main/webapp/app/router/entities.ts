@@ -20,6 +20,12 @@ const DdUser = () => import('@/entities/dd-user/dd-user.vue');
 const DdUserUpdate = () => import('@/entities/dd-user/dd-user-update.vue');
 // prettier-ignore
 const DdUserDetails = () => import('@/entities/dd-user/dd-user-details.vue');
+// prettier-ignore
+const Conversation = () => import('@/entities/conversation/conversation.vue');
+// prettier-ignore
+const ConversationUpdate = () => import('@/entities/conversation/conversation-update.vue');
+// prettier-ignore
+const ConversationDetails = () => import('@/entities/conversation/conversation-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default [
@@ -93,6 +99,30 @@ export default [
     path: '/dd-user/:ddUserId/view',
     name: 'DdUserView',
     component: DdUserDetails,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/conversation',
+    name: 'Conversation',
+    component: Conversation,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/conversation/new',
+    name: 'ConversationCreate',
+    component: ConversationUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/conversation/:conversationId/edit',
+    name: 'ConversationEdit',
+    component: ConversationUpdate,
+    meta: { authorities: [Authority.USER] },
+  },
+  {
+    path: '/conversation/:conversationId/view',
+    name: 'ConversationView',
+    component: ConversationDetails,
     meta: { authorities: [Authority.USER] },
   },
   // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

@@ -5,8 +5,6 @@ import com.kyanite.dingtalk.lab.domain.enumeration.ItemType;
 import com.kyanite.dingtalk.lab.domain.enumeration.TypesOfFee;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -46,13 +44,12 @@ public class PrivateData implements Serializable {
     private Boolean agree;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "privateData" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "privateData", "conversation" }, allowSetters = true)
     private PublicData publicData;
 
-    @ManyToMany(mappedBy = "privateData")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "privateData" }, allowSetters = true)
-    private Set<DdUser> ddUsers = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "privateData", "conversation" }, allowSetters = true)
+    private DdUser ddUser;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -159,35 +156,17 @@ public class PrivateData implements Serializable {
         this.publicData = publicData;
     }
 
-    public Set<DdUser> getDdUsers() {
-        return this.ddUsers;
+    public DdUser getDdUser() {
+        return this.ddUser;
     }
 
-    public PrivateData ddUsers(Set<DdUser> ddUsers) {
-        this.setDdUsers(ddUsers);
+    public PrivateData ddUser(DdUser ddUser) {
+        this.setDdUser(ddUser);
         return this;
     }
 
-    public PrivateData addDdUser(DdUser ddUser) {
-        this.ddUsers.add(ddUser);
-        ddUser.getPrivateData().add(this);
-        return this;
-    }
-
-    public PrivateData removeDdUser(DdUser ddUser) {
-        this.ddUsers.remove(ddUser);
-        ddUser.getPrivateData().remove(this);
-        return this;
-    }
-
-    public void setDdUsers(Set<DdUser> ddUsers) {
-        if (this.ddUsers != null) {
-            this.ddUsers.forEach(i -> i.removePrivateData(this));
-        }
-        if (ddUsers != null) {
-            ddUsers.forEach(i -> i.addPrivateData(this));
-        }
-        this.ddUsers = ddUsers;
+    public void setDdUser(DdUser ddUser) {
+        this.ddUser = ddUser;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

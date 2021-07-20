@@ -13,5 +13,11 @@
                                  constraintName="fk_private_data__public_data_id"
                                  referencedColumnNames="id"
                                  referencedTableName="public_data"/>
+
+        <addForeignKeyConstraint baseColumnNames="dd_user_id"
+                                 baseTableName="private_data"
+                                 constraintName="fk_private_data__dd_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dd_user"/>
     </changeSet>
 </databaseChangeLog>

@@ -83,22 +83,11 @@
             <column name="roles" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="conversation_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-    </changeSet>
-
-    <changeSet id="20210716063709-1-relations" author="jhipster">
-
-        <createTable tableName="rel_dd_user__private_data">
-            <column name="private_data_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="dd_user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="dd_user_id, private_data_id" tableName="rel_dd_user__private_data"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

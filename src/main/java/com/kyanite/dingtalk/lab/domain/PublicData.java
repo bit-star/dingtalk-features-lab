@@ -47,8 +47,12 @@ public class PublicData implements Serializable {
 
     @OneToMany(mappedBy = "publicData")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "publicData", "ddUsers" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "publicData", "ddUser" }, allowSetters = true)
     private Set<PrivateData> privateData = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "publicData", "ddUsers" }, allowSetters = true)
+    private Conversation conversation;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -171,6 +175,19 @@ public class PublicData implements Serializable {
             privateData.forEach(i -> i.setPublicData(this));
         }
         this.privateData = privateData;
+    }
+
+    public Conversation getConversation() {
+        return this.conversation;
+    }
+
+    public PublicData conversation(Conversation conversation) {
+        this.setConversation(conversation);
+        return this;
+    }
+
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

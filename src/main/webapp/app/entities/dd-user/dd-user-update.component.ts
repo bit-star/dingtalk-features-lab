@@ -6,6 +6,9 @@ import JhiDataUtils from '@/shared/data/data-utils.service';
 import PrivateDataService from '@/entities/private-data/private-data.service';
 import { IPrivateData } from '@/shared/model/private-data.model';
 
+import ConversationService from '@/entities/conversation/conversation.service';
+import { IConversation } from '@/shared/model/conversation.model';
+
 import { IDdUser, DdUser } from '@/shared/model/dd-user.model';
 import DdUserService from './dd-user.service';
 
@@ -47,6 +50,10 @@ export default class DdUserUpdate extends mixins(JhiDataUtils) {
   @Inject('privateDataService') private privateDataService: () => PrivateDataService;
 
   public privateData: IPrivateData[] = [];
+
+  @Inject('conversationService') private conversationService: () => ConversationService;
+
+  public conversations: IConversation[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -67,7 +74,6 @@ export default class DdUserUpdate extends mixins(JhiDataUtils) {
         this.currentLanguage = this.$store.getters.currentLanguage;
       }
     );
-    this.ddUser.privateData = [];
   }
 
   public save(): void {
@@ -123,16 +129,10 @@ export default class DdUserUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.privateData = res.data;
       });
-  }
-
-  public getSelected(selectedVals, option): any {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
+    this.conversationService()
+      .retrieve()
+      .then(res => {
+        this.conversations = res.data;
+      });
   }
 }

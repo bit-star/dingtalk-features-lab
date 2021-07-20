@@ -12,7 +12,7 @@ export interface IPrivateData {
   typesOfFee?: TypesOfFee | null;
   agree?: boolean | null;
   publicData?: IPublicData | null;
-  ddUsers?: IDdUser[] | null;
+  ddUser?: IDdUser | null;
 }
 
 export class PrivateData implements IPrivateData {
@@ -25,7 +25,7 @@ export class PrivateData implements IPrivateData {
     public typesOfFee?: TypesOfFee | null,
     public agree?: boolean | null,
     public publicData?: IPublicData | null,
-    public ddUsers?: IDdUser[] | null
+    public ddUser?: IDdUser | null
   ) {
     this.agree = this.agree ?? false;
   }

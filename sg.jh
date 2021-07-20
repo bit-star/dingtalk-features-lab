@@ -1,6 +1,12 @@
 
 
 
+entity Conversation{
+  id String,
+  name String
+}
+
+
 
 entity DdUser {
     unionid String,
@@ -58,12 +64,13 @@ enum TypesOfFee{
 
 
 relationship  OneToMany {
-	PublicData to PrivateData
+	PublicData to PrivateData,
+     Conversation to PublicData,
+    Conversation to DdUser,
+    DdUser to PrivateData
 }
 
-relationship ManyToMany {
-	DdUser to PrivateData
-}
+
 
 
 service all with serviceClass

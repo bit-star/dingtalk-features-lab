@@ -302,22 +302,19 @@
             />
           </div>
           <div class="form-group">
-            <label v-text="$t('dingtalkFeaturesLabApp.ddUser.privateData')" for="dd-user-privateData">Private Data</label>
-            <select
-              class="form-control"
-              id="dd-user-privateData"
-              data-cy="privateData"
-              multiple
-              name="privateData"
-              v-if="ddUser.privateData !== undefined"
-              v-model="ddUser.privateData"
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.ddUser.conversation')" for="dd-user-conversation"
+              >Conversation</label
             >
+            <select class="form-control" id="dd-user-conversation" data-cy="conversation" name="conversation" v-model="ddUser.conversation">
+              <option v-bind:value="null"></option>
               <option
-                v-bind:value="getSelected(ddUser.privateData, privateDataOption)"
-                v-for="privateDataOption in privateData"
-                :key="privateDataOption.id"
+                v-bind:value="
+                  ddUser.conversation && conversationOption.id === ddUser.conversation.id ? ddUser.conversation : conversationOption
+                "
+                v-for="conversationOption in conversations"
+                :key="conversationOption.id"
               >
-                {{ privateDataOption.id }}
+                {{ conversationOption.id }}
               </option>
             </select>
           </div>

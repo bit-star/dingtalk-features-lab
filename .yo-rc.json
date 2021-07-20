@@ -44,8 +44,8 @@
     "clientTheme": "none",
     "clientThemeVariant": "",
     "reactive": false,
-    "entities": ["PublicData", "PrivateData", "DdUser"],
-    "lastLiquibaseTimestamp": 1626417429000
+    "entities": ["PublicData", "PrivateData", "DdUser", "Conversation"],
+    "lastLiquibaseTimestamp": 1626750710000
   },
   "git-provider": "GitHub",
   "git-company": "bit-star",

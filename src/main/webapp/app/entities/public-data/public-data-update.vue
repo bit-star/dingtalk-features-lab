@@ -97,6 +97,31 @@
               v-model="$v.publicData.agree.$model"
             />
           </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.publicData.conversation')" for="public-data-conversation"
+              >Conversation</label
+            >
+            <select
+              class="form-control"
+              id="public-data-conversation"
+              data-cy="conversation"
+              name="conversation"
+              v-model="publicData.conversation"
+            >
+              <option v-bind:value="null"></option>
+              <option
+                v-bind:value="
+                  publicData.conversation && conversationOption.id === publicData.conversation.id
+                    ? publicData.conversation
+                    : conversationOption
+                "
+                v-for="conversationOption in conversations"
+                :key="conversationOption.id"
+              >
+                {{ conversationOption.id }}
+              </option>
+            </select>
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

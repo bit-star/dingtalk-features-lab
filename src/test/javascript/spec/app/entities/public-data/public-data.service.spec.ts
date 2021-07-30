@@ -31,7 +31,7 @@ describe('Service Tests', () => {
 
     beforeEach(() => {
       service = new PublicDataService();
-      elemDefault = new PublicData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT, false);
+      elemDefault = new PublicData(123, 'AAAAAAA', 0, 'AAAAAAA', ItemType.CostBudget, TypesOfFee.IT, false, 0, 0);
     });
 
     describe('Service methods', () => {
@@ -89,6 +89,8 @@ describe('Service Tests', () => {
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
             agree: true,
+            requestid: 1,
+            workflowid: 1,
           },
           elemDefault
         );
@@ -117,6 +119,7 @@ describe('Service Tests', () => {
           {
             fee: 1,
             agree: true,
+            workflowid: 1,
           },
           new PublicData()
         );
@@ -150,6 +153,8 @@ describe('Service Tests', () => {
             itemType: 'BBBBBB',
             typesOfFee: 'BBBBBB',
             agree: true,
+            requestid: 1,
+            workflowid: 1,
           },
           elemDefault
         );

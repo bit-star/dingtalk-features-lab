@@ -26,6 +26,14 @@
     {
       "fieldName": "agree",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "requestid",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "workflowid",
+      "fieldType": "Long"
     }
   ],
   "relationships": [

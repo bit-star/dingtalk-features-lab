@@ -45,6 +45,12 @@ public class PublicData implements Serializable {
     @Column(name = "agree")
     private Boolean agree;
 
+    @Column(name = "requestid")
+    private Long requestid;
+
+    @Column(name = "workflowid")
+    private Long workflowid;
+
     @OneToMany(mappedBy = "publicData")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "publicData", "ddUser" }, allowSetters = true)
@@ -146,6 +152,32 @@ public class PublicData implements Serializable {
         this.agree = agree;
     }
 
+    public Long getRequestid() {
+        return this.requestid;
+    }
+
+    public PublicData requestid(Long requestid) {
+        this.requestid = requestid;
+        return this;
+    }
+
+    public void setRequestid(Long requestid) {
+        this.requestid = requestid;
+    }
+
+    public Long getWorkflowid() {
+        return this.workflowid;
+    }
+
+    public PublicData workflowid(Long workflowid) {
+        this.workflowid = workflowid;
+        return this;
+    }
+
+    public void setWorkflowid(Long workflowid) {
+        this.workflowid = workflowid;
+    }
+
     public Set<PrivateData> getPrivateData() {
         return this.privateData;
     }
@@ -220,6 +252,8 @@ public class PublicData implements Serializable {
             ", itemType='" + getItemType() + "'" +
             ", typesOfFee='" + getTypesOfFee() + "'" +
             ", agree='" + getAgree() + "'" +
+            ", requestid=" + getRequestid() +
+            ", workflowid=" + getWorkflowid() +
             "}";
     }
 }

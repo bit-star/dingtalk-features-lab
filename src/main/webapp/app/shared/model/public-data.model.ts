@@ -11,6 +11,8 @@ export interface IPublicData {
   itemType?: ItemType | null;
   typesOfFee?: TypesOfFee | null;
   agree?: boolean | null;
+  requestid?: number | null;
+  workflowid?: number | null;
   privateData?: IPrivateData[] | null;
   conversation?: IConversation | null;
 }
@@ -24,6 +26,8 @@ export class PublicData implements IPublicData {
     public itemType?: ItemType | null,
     public typesOfFee?: TypesOfFee | null,
     public agree?: boolean | null,
+    public requestid?: number | null,
+    public workflowid?: number | null,
     public privateData?: IPrivateData[] | null,
     public conversation?: IConversation | null
   ) {

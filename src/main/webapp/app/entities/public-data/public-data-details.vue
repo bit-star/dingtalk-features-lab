@@ -43,6 +43,18 @@
             <span>{{ publicData.agree }}</span>
           </dd>
           <dt>
+            <span v-text="$t('dingtalkFeaturesLabApp.publicData.requestid')">Requestid</span>
+          </dt>
+          <dd>
+            <span>{{ publicData.requestid }}</span>
+          </dd>
+          <dt>
+            <span v-text="$t('dingtalkFeaturesLabApp.publicData.workflowid')">Workflowid</span>
+          </dt>
+          <dd>
+            <span>{{ publicData.workflowid }}</span>
+          </dd>
+          <dt>
             <span v-text="$t('dingtalkFeaturesLabApp.publicData.conversation')">Conversation</span>
           </dt>
           <dd>

@@ -66,6 +66,12 @@ public class PublicDataService {
                     if (publicData.getAgree() != null) {
                         existingPublicData.setAgree(publicData.getAgree());
                     }
+                    if (publicData.getRequestid() != null) {
+                        existingPublicData.setRequestid(publicData.getRequestid());
+                    }
+                    if (publicData.getWorkflowid() != null) {
+                        existingPublicData.setWorkflowid(publicData.getWorkflowid());
+                    }
 
                     return existingPublicData;
                 }

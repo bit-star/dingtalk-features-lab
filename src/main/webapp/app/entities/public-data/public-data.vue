@@ -35,6 +35,8 @@
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.itemType')">Item Type</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.typesOfFee')">Types Of Fee</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.agree')">Agree</span></th>
+            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.requestid')">Requestid</span></th>
+            <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.workflowid')">Workflowid</span></th>
             <th scope="row"><span v-text="$t('dingtalkFeaturesLabApp.publicData.conversation')">Conversation</span></th>
             <th scope="row"></th>
           </tr>
@@ -50,6 +52,8 @@
             <td v-text="$t('dingtalkFeaturesLabApp.ItemType.' + publicData.itemType)">{{ publicData.itemType }}</td>
             <td v-text="$t('dingtalkFeaturesLabApp.TypesOfFee.' + publicData.typesOfFee)">{{ publicData.typesOfFee }}</td>
             <td>{{ publicData.agree }}</td>
+            <td>{{ publicData.requestid }}</td>
+            <td>{{ publicData.workflowid }}</td>
             <td>
               <div v-if="publicData.conversation">
                 <router-link :to="{ name: 'ConversationView', params: { conversationId: publicData.conversation.id } }">{{

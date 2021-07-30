@@ -24,6 +24,8 @@
       "itemType": "Item Type",
       "typesOfFee": "Types Of Fee",
       "agree": "Agree",
+      "requestid": "Requestid",
+      "workflowid": "Workflowid",
       "privateData": "Private Data",
       "conversation": "Conversation"
     }

@@ -17,6 +17,8 @@ const validations: any = {
     itemType: {},
     typesOfFee: {},
     agree: {},
+    requestid: {},
+    workflowid: {},
   },
 };
 

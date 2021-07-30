@@ -51,6 +51,12 @@ class PublicDataResourceIT {
     private static final Boolean DEFAULT_AGREE = false;
     private static final Boolean UPDATED_AGREE = true;
 
+    private static final Long DEFAULT_REQUESTID = 1L;
+    private static final Long UPDATED_REQUESTID = 2L;
+
+    private static final Long DEFAULT_WORKFLOWID = 1L;
+    private static final Long UPDATED_WORKFLOWID = 2L;
+
     private static final String ENTITY_API_URL = "/api/public-data";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -81,7 +87,9 @@ class PublicDataResourceIT {
             .reason(DEFAULT_REASON)
             .itemType(DEFAULT_ITEM_TYPE)
             .typesOfFee(DEFAULT_TYPES_OF_FEE)
-            .agree(DEFAULT_AGREE);
+            .agree(DEFAULT_AGREE)
+            .requestid(DEFAULT_REQUESTID)
+            .workflowid(DEFAULT_WORKFLOWID);
         return publicData;
     }
 
@@ -98,7 +106,9 @@ class PublicDataResourceIT {
             .reason(UPDATED_REASON)
             .itemType(UPDATED_ITEM_TYPE)
             .typesOfFee(UPDATED_TYPES_OF_FEE)
-            .agree(UPDATED_AGREE);
+            .agree(UPDATED_AGREE)
+            .requestid(UPDATED_REQUESTID)
+            .workflowid(UPDATED_WORKFLOWID);
         return publicData;
     }
 
@@ -126,6 +136,8 @@ class PublicDataResourceIT {
         assertThat(testPublicData.getItemType()).isEqualTo(DEFAULT_ITEM_TYPE);
         assertThat(testPublicData.getTypesOfFee()).isEqualTo(DEFAULT_TYPES_OF_FEE);
         assertThat(testPublicData.getAgree()).isEqualTo(DEFAULT_AGREE);
+        assertThat(testPublicData.getRequestid()).isEqualTo(DEFAULT_REQUESTID);
+        assertThat(testPublicData.getWorkflowid()).isEqualTo(DEFAULT_WORKFLOWID);
     }
 
     @Test
@@ -163,7 +175,9 @@ class PublicDataResourceIT {
             .andExpect(jsonPath("$.[*].reason").value(hasItem(DEFAULT_REASON)))
             .andExpect(jsonPath("$.[*].itemType").value(hasItem(DEFAULT_ITEM_TYPE.toString())))
             .andExpect(jsonPath("$.[*].typesOfFee").value(hasItem(DEFAULT_TYPES_OF_FEE.toString())))
-            .andExpect(jsonPath("$.[*].agree").value(hasItem(DEFAULT_AGREE.booleanValue())));
+            .andExpect(jsonPath("$.[*].agree").value(hasItem(DEFAULT_AGREE.booleanValue())))
+            .andExpect(jsonPath("$.[*].requestid").value(hasItem(DEFAULT_REQUESTID.intValue())))
+            .andExpect(jsonPath("$.[*].workflowid").value(hasItem(DEFAULT_WORKFLOWID.intValue())));
     }
 
     @Test
@@ -183,7 +197,9 @@ class PublicDataResourceIT {
             .andExpect(jsonPath("$.reason").value(DEFAULT_REASON))
             .andExpect(jsonPath("$.itemType").value(DEFAULT_ITEM_TYPE.toString()))
             .andExpect(jsonPath("$.typesOfFee").value(DEFAULT_TYPES_OF_FEE.toString()))
-            .andExpect(jsonPath("$.agree").value(DEFAULT_AGREE.booleanValue()));
+            .andExpect(jsonPath("$.agree").value(DEFAULT_AGREE.booleanValue()))
+            .andExpect(jsonPath("$.requestid").value(DEFAULT_REQUESTID.intValue()))
+            .andExpect(jsonPath("$.workflowid").value(DEFAULT_WORKFLOWID.intValue()));
     }
 
     @Test
@@ -211,7 +227,9 @@ class PublicDataResourceIT {
             .reason(UPDATED_REASON)
             .itemType(UPDATED_ITEM_TYPE)
             .typesOfFee(UPDATED_TYPES_OF_FEE)
-            .agree(UPDATED_AGREE);
+            .agree(UPDATED_AGREE)
+            .requestid(UPDATED_REQUESTID)
+            .workflowid(UPDATED_WORKFLOWID);
 
         restPublicDataMockMvc
             .perform(
@@ -231,6 +249,8 @@ class PublicDataResourceIT {
         assertThat(testPublicData.getItemType()).isEqualTo(UPDATED_ITEM_TYPE);
         assertThat(testPublicData.getTypesOfFee()).isEqualTo(UPDATED_TYPES_OF_FEE);
         assertThat(testPublicData.getAgree()).isEqualTo(UPDATED_AGREE);
+        assertThat(testPublicData.getRequestid()).isEqualTo(UPDATED_REQUESTID);
+        assertThat(testPublicData.getWorkflowid()).isEqualTo(UPDATED_WORKFLOWID);
     }
 
     @Test
@@ -301,7 +321,12 @@ class PublicDataResourceIT {
         PublicData partialUpdatedPublicData = new PublicData();
         partialUpdatedPublicData.setId(publicData.getId());
 
-        partialUpdatedPublicData.name(UPDATED_NAME).fee(UPDATED_FEE).reason(UPDATED_REASON).itemType(UPDATED_ITEM_TYPE);
+        partialUpdatedPublicData
+            .name(UPDATED_NAME)
+            .fee(UPDATED_FEE)
+            .reason(UPDATED_REASON)
+            .itemType(UPDATED_ITEM_TYPE)
+            .workflowid(UPDATED_WORKFLOWID);
 
         restPublicDataMockMvc
             .perform(
@@ -321,6 +346,8 @@ class PublicDataResourceIT {
         assertThat(testPublicData.getItemType()).isEqualTo(UPDATED_ITEM_TYPE);
         assertThat(testPublicData.getTypesOfFee()).isEqualTo(DEFAULT_TYPES_OF_FEE);
         assertThat(testPublicData.getAgree()).isEqualTo(DEFAULT_AGREE);
+        assertThat(testPublicData.getRequestid()).isEqualTo(DEFAULT_REQUESTID);
+        assertThat(testPublicData.getWorkflowid()).isEqualTo(UPDATED_WORKFLOWID);
     }
 
     @Test
@@ -341,7 +368,9 @@ class PublicDataResourceIT {
             .reason(UPDATED_REASON)
             .itemType(UPDATED_ITEM_TYPE)
             .typesOfFee(UPDATED_TYPES_OF_FEE)
-            .agree(UPDATED_AGREE);
+            .agree(UPDATED_AGREE)
+            .requestid(UPDATED_REQUESTID)
+            .workflowid(UPDATED_WORKFLOWID);
 
         restPublicDataMockMvc
             .perform(
@@ -361,6 +390,8 @@ class PublicDataResourceIT {
         assertThat(testPublicData.getItemType()).isEqualTo(UPDATED_ITEM_TYPE);
         assertThat(testPublicData.getTypesOfFee()).isEqualTo(UPDATED_TYPES_OF_FEE);
         assertThat(testPublicData.getAgree()).isEqualTo(UPDATED_AGREE);
+        assertThat(testPublicData.getRequestid()).isEqualTo(UPDATED_REQUESTID);
+        assertThat(testPublicData.getWorkflowid()).isEqualTo(UPDATED_WORKFLOWID);
     }
 
     @Test

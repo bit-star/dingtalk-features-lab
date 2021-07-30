@@ -98,6 +98,34 @@
             />
           </div>
           <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.publicData.requestid')" for="public-data-requestid"
+              >Requestid</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="requestid"
+              id="public-data-requestid"
+              data-cy="requestid"
+              :class="{ valid: !$v.publicData.requestid.$invalid, invalid: $v.publicData.requestid.$invalid }"
+              v-model.number="$v.publicData.requestid.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.publicData.workflowid')" for="public-data-workflowid"
+              >Workflowid</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              name="workflowid"
+              id="public-data-workflowid"
+              data-cy="workflowid"
+              :class="{ valid: !$v.publicData.workflowid.$invalid, invalid: $v.publicData.workflowid.$invalid }"
+              v-model.number="$v.publicData.workflowid.$model"
+            />
+          </div>
+          <div class="form-group">
             <label class="form-control-label" v-text="$t('dingtalkFeaturesLabApp.publicData.conversation')" for="public-data-conversation"
               >Conversation</label
             >

@@ -41,7 +41,89 @@ entity PublicData {
     reason String,
     itemType ItemType,
     typesOfFee TypesOfFee,
+    agree Boolean,
+    requestid Long
+}
+
+entity PrivateData {
+	name String,
+    fee BigDecimal,
+    reason String,
+    itemType ItemType,
+    typesOfFee TypesOfFee,
     agree Boolean
+}
+
+enum ItemType{
+	CostBudget,
+    ContractAmount
+}
+
+enum TypesOfFee{
+		IT , Purchase , DueDiligence
+}
+
+
+relationship  OneToMany {
+	PublicData to PrivateData,
+     Conversation to PublicData,
+    Conversation to DdUser,
+    DdUser to PrivateData
+}
+
+
+
+
+service all with serviceClass
+
+
+
+
+
+
+entity Conversation{
+  id String,
+  name String
+}
+
+
+
+entity DdUser {
+    unionid String,
+    remark String,
+    userid  String,
+    isLeaderInDepts  String,
+    isBoss  Boolean,
+    hiredDate BigDecimal,
+    isSenior  Boolean,
+    tel  String,
+    department String,
+    workPlace  String ,
+    orderInDepts  TextBlob,
+    mobile  String ,
+    errmsg  String ,
+    active  Boolean,
+    avatar  String ,
+    isAdmin Boolean,
+    isHide Boolean,
+    jobnumber  String,
+    name  String,
+    extattr TextBlob,
+    stateCode  String,
+    position  TextBlob,
+    roles  String
+}
+
+
+entity PublicData {
+	name String,
+    fee BigDecimal,
+    reason String,
+    itemType ItemType,
+    typesOfFee TypesOfFee,
+    agree Boolean,
+    requestid Long,
+    workflowid Long
 }
 
 entity PrivateData {

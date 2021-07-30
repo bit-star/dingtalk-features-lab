@@ -1,11 +1,11 @@
-id;name;fee;reason;item_type;types_of_fee;agree
-1;Vietnam challenge Kenya;75106;Pound;ContractAmount;DueDiligence;true
-2;Car tan;5446;invoice generating capacitor;CostBudget;Purchase;false
-3;e-markets;30608;Polarised;ContractAmount;IT;true
-4;街;78590;viral Industrial monitor;ContractAmount;DueDiligence;true
-5;integrate 桥 Incredible;93297;granular Integration Computer;CostBudget;Purchase;false
-6;and;30555;Kiribati Plastic Bedfordshire;ContractAmount;Purchase;false
-7;Soft deposit;24687;target;CostBudget;Purchase;true
-8;Gorgeous 江西省 invoice;25850;synthesizing cross-platform Chicken;ContractAmount;Purchase;true
-9;parsing Myanmar Identity;54031;recontextualize Functionality;CostBudget;DueDiligence;false
-10;Ball;57094;Chair Towels infomediaries;CostBudget;DueDiligence;true
+id;name;fee;reason;item_type;types_of_fee;agree;requestid;workflowid
+1;Vietnam challenge Kenya;75106;Pound;ContractAmount;DueDiligence;true;46474;6874
+2;HTTP tan Handmade;82961;Buckinghamshire Corporate;CostBudget;IT;false;58758;66209
+3;Rubber;10229;Health application viral;CostBudget;DueDiligence;true;72926;74601
+4;feed;69102;Shoes 路;CostBudget;DueDiligence;true;90846;35389
+5;CFA;76347;Concrete;ContractAmount;IT;false;52688;77982
+6;synergy 桥;30349;Bedfordshire Home 上海市;ContractAmount;Purchase;true;65742;21988
+7;Compatible Berkshire;50480;Executive Awesome;CostBudget;Purchase;true;16263;25850
+8;synthesizing cross-platform Chicken;86741;西藏 Security;ContractAmount;DueDiligence;true;36921;85589
+9;宁夏 parse;72367;AGP Ball;ContractAmount;DueDiligence;false;823;70944
+10;Small;93066;Burundi alarm;CostBudget;Purchase;false;88244;59339
